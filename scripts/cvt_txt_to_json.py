@@ -6,8 +6,8 @@ import json
 
 
 def main():
-    ann_path = '/mnt/cephfs/dataset/ucf-process/annotations/test_split_1.txt'
-    out_path = '/mnt/cephfs/dataset/ucf-process/annotations/test_split_1.json'
+    ann_path = '/mnt/cephfs/dataset/ucf101/annotations/test_split_1.txt'
+    out_path = '/mnt/cephfs/dataset/ucf101/annotations/test_split_1.json'
     with open(ann_path, 'r') as f:
         lines = f.read().splitlines()
     anns = []

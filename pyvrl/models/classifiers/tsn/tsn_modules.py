@@ -4,6 +4,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from callonce import printonce
 
 
 class SimpleSTModule(nn.Module):
@@ -115,7 +116,9 @@ class SimpleClsHead(nn.Module):
             cls_logits = cls_logits.view(batch_size * num_segs, -1)
 
         losses = dict()
+
         losses['loss_cls'] = F.cross_entropy(cls_logits, labels)
+
 
         with torch.no_grad():
             max_index = cls_logits.max(dim=1)[1]

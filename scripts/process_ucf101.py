@@ -7,6 +7,7 @@ import zipfile
 import mmcv
 import cv2
 import argparse
+from callonce import printonce
 
 
 def parse_args():
@@ -63,9 +64,12 @@ if __name__ == '__main__':
         video_label_list = [ids_map[name.split('/')[0]] for name in video_name_list]
         out_file = os.path.join(args.out_dir, 'annotations', f'{prefix}_split_1.txt')
         mmcv.mkdir_or_exist(os.path.dirname(out_file))
+
         with open(out_file, 'w') as f:
             for video_name, video_label in zip(video_name_list, video_label_list):
+                video_label -= 1
                 f.write(f'{video_name} {video_label}\n')
+
         all_video_name_list.extend(video_name_list)
 
     # Step 3, convert .avi raw video to zipfile
